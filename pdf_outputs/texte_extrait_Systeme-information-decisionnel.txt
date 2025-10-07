@@ -1,0 +1,1170 @@
+
+--- Page 1 ---
+Systèmes d’information décisionnels 
+(Data Warehouse / Data Mining)
+E. GRISLIN-LE STRUGEON 
+Université de Valenciennes, ISTV 
+Emmanuelle.Grislin@univ-valenciennes.fr 
+D. DONSEZ 
+Université Joseph Fourier, IMA 
+Didier.Donsez@imag.fr 
+1996-2006 http://www-adele.imag.fr/~donsez/cours 
+--- Page 2 ---
+222 
+<#> Plan 
+/rhombus61. Introduction 
+»Problématique- Le Système d’Information - La Suite Dé cisionnelle 
+/rhombus62. L’Entrepôt de Données 
+»Extraction des données - Constitution de l’entrepôt - Modélisation 
+/rhombus63. Les Bases Multidimensionnelles 
+»Analyse multidimensionnelle - OLAP - Data Marts 
+/rhombus64. La Restitution des Informations 
+»Data Mining 
+/rhombus65. La Gestion de Projet Data Warehouse 
+/rhombus66. Les outils 
+/rhombus67. Perspectives du Data Warehouse 
+/rhombus68. Conclusion et Bibliographie 
+--- Page 3 ---
+333 
+<#> 1. Introduction - Problématique 
+/rhombus6Objectif 
+»Améliorer les performances décisionnelles de l'entreprise 
+/rhombus6Comment ? 
+»en répondant aux demandes d’analyse des décideurs 
+/rhombus6Exemple 
+»clientèle : Qui sont mes clients ? Pourquoi sont-ils mes clients ? Comment les conserver ou les faire revenir ? Ces clients sont-ils intéressants pour moi ? 
+»marketing, actions commerciales : Où placer ce produit dans les rayons ? Comment cibler plus précisément le mailing concernant ce produit ? 
+»... 
+--- Page 4 ---
+444 
+<#> 1. Introduction - Problématique 
+/rhombus6Une grande masse de données : 
+»Distribuée
+»Hétérogène 
+»Très Détaillée
+/rhombus6A traiter : 
+»Synthétiser / Résumer 
+»Visualiser 
+»Analyser 
+/rhombus6Pour une utilisation par : 
+»des experts et des analystes d'un métier 
+»NON informaticiens 
+»NON statisticiens 
+--- Page 5 ---
+555 
+<#> 1. Introduction - Le système d’information 
+Moyen d’atteindre ces objectifs : 
+Le Data Warehouse, un système d’information dédié aux applications décisionnelles 
+/rhombus6En Aval des bases de production 
+(ie bases opérationnelles) 
+/rhombus6En Amont des prises de décision 
+»basé sur des indicateurs ( Key Business Indicators (KBI)) 
+--- Page 6 ---
+666 
+<#> 1. Introduction - La Suite Décisionnelle 
+Bases de 
+Production Entrepôt 
+de Données (Data Warehouse)Base 
+MultiDimensionnelle Prédiction 
+/ Simulation Prise de 
+Décision 
+--- Page 7 ---
+777 
+<#> 1. Introduction - Utilisation 
+/rhombus6Mailing 
+»amélioration du taux de réponse 
+/rhombus6Banque, Assurance 
+»déterminer les profils client 
+/circle6Risque d'un Prêt, Prime plus précise 
+/rhombus6Commerce 
+»ciblage de clientèle 
+»déterminer les promotions 
+»aménagement des rayons (2 produits en corrélation) 
+--- Page 8 ---
+888 
+<#> 1. Introduction - Utilisation 
+/rhombus6Logistique 
+»adéquation demande / production 
+/rhombus6Santé
+»épidémiologie (VIH, Amiante, ...) 
+/rhombus6Econométrie 
+»prédiction de trafic autoroutier 
+/rhombus6Ressources Humaines 
+»adéquation activité / personnel 
+--- Page 9 ---
+999 
+<#> Déclinaisons métiers du Décisionnel 
+/rhombus6SPM (Strategic Performance Management) 
+»Déterminer et contrôler les indicateurs clé de la pe rformance de 
+l’entreprise 
+/rhombus6FI (Finance Intelligence) 
+»Planifier, analyse et diffuser l’information financ ière. 
+Mesurer et gérer les risques. 
+/rhombus6HCM (Human Capital Management) 
+»Aligner les stratégies RH, les processus et les tec hnologies. 
+Modéliser la carte des RH (Ressources Humaines) 
+/rhombus6CRM (Customer Relationship Management) 
+»Améliorer la connaissance client, Identifier et pré voir la rentabilité
+client. Accroître l’efficacité du marketing client. 
+/rhombus6SRM (Supplier Relationship Management) 
+»Classifier et évaluer l’ensemble des fournisseurs. Planifier et piloter la stratégie Achat. 
+--- Page 10 ---
+101010 
+<#> D’après une enquête de l’IDC  auprès de 45 organisations ayant un Data Warehouse en fonctionnement (fin 1995-1996) : 
+»90% des entreprises ont un RSI au moins égal à 40% 
+»50% ont un RSI supérieur à 160% 
+»25% ont un RSI supérieur à 600% 1. Introduction - RSI 
+Retour sur investissement du 
+datawarehousing 
+0 5 10 15 20 3−49 50−99 100−199 200−499 500−999 ≥1000 Retour sur investissement 
+(%) 
+Organisations (%) RSI moyen = 401% RSI médian = 167% 
+--- Page 11 ---
+111111 
+<#> 1. Introduction - Rentabilisation 
+Durée de rentabilisation du data warehouse 
+0 10 20 30 40 0−1 1−2 1−3 ≥5 Période de rentabilisation 
+(années) 
+Organisations (%) 
+--- Page 12 ---
+121212 
+<#> 1. Introduction - Rentabilisation 
+/rhombus6Constat: orientation marché (client, techno, produit) 
+»Stratégies proactive meilleur que des stratégies réactives 
+»Cf livre de David Gotteland 
+--- Page 13 ---
+131313 
+<#> 2. L'Entrepôt de Données (Data Warehouse)
+/rhombus6Définition de Bill Inmon (1996) 
+«Le Data Warehouse est une collection de données orientées sujet, intégrées, non volatiles et historisées, organisées pour le support d’un processus d’aide à la décision.»
+/rhombus6Principe 
+»Base de Données utilisée à des fins d’analyse. 
+»Caractéristiques : 
+/circle6orientation sujets («métiers»)
+/circle6données intégrées 
+/circle6données non volatiles 
+/circle6données datées 
+--- Page 14 ---
+141414 
+<#> 2. L'Entrepôt de Données (Data Warehouse)
+/rhombus6Objectif 
+»Retrouver une information historique et transversale à l’entreprise 
+Data Warehouse BD Prod Service 
+Commercial 
+BD Prod Service 
+Financier 
+BD Prod Service 
+Livraison 
+Clientèle 
+Clientèle 
+Historique /circle6Données réparties 
+/circle6Vue «au-jour-le-jour»
+/circle6Recoupements d’informations 
+/circle6Vue sur l’évolution des informations /rhombus6Comment 
+»Fédérer/Regrouper l'ensemble des données de l'entreprise 
+--- Page 15 ---
+151515 
+<#> 2. DW - OLTP versus DW 
+Bases de Production 
+( OLTP ) Entrepôt de Données 
+(DW) 
+Données •atomiques •orienté application •à jour •dynamiques •résumés•orienté sujet •historiques •statiques 
+Utilisateurs •employés de bureau •nombreux •concurrents •mises à jour •requêtes prédéfinies •réponses immédiates •accès à peu de données •analystes •peu •non concurrents •interrogations •requêtes " one-use" •réponses moins rapides •accès à beaucoup d’information 
+--- Page 16 ---
+161616 
+<#> 2. DW - OLTP DW 
+/rhombus6Données de production : 
+»SGBD et supports physiques hétérogènes 
+»Qualité inégale des données 
+»Représentations hétérogènes /rhombus6Objectif d’obtention de données : 
+»centralisées 
+»fiables 
+»interprétables 
+--- Page 17 ---
+171717 
+<#> /rhombus6Extraction 
+/rhombus6Transformation 
+/circle6filtrer 
+/circle6trier 
+/circle6homogénéiser 
+/circle6nettoyer 
+/circle6... 
+/rhombus6Chargement (Loading)2. DW - Alimentation (ETL) du DW 
+--- Page 18 ---
+181818 
+<#> m,f 1,0 male, female FRF USD EUR char(10) dec(13,2) numeric(7) 
+m,f 
+EUR 
+numeric(10) intégration 
+des données 2. DW - Transformations 
+--- Page 19 ---
+191919 
+<#> DW - Transformation 
+/rhombus6Existence de plusieurs sources 
+/head2rightnon conformité des représentations 
+/circle6découpages géographiques différents 
+/circle6codage des couleurs 
+/circle6identification des produits différents 
+produits en vrac 
+/barb2swdifficulté de comparaison des sources de données 
+/rhombus6Mise en conformité nécessaire Secteur 
+Nord Secteur 
+Est Secteur 
+Sud Secteur 
+Ouest 
+Prune Violet 
+--- Page 20 ---
+202020 
+<#> 2. DW - Constitution de l'entrepôt 
+/rhombus6Extraction des données 
+»Besoin d’outils spécifiques pour : 
+/circle6accéder aux bases de production (requêtes sur des B D hétérogènes) 
+/circle6améliorer la qualité des données : «nettoyer», filtr er, ... 
+/circle6transformer les données : intégrer, homogénéiser 
+/circle6dater systématiquement les données 
+/rhombus6Référentiel 
+»La métabase contient des métadonnées :
+des données sur les données du D.W. 
+/circle6quelles sont les données «entreposées», leur format , leur 
+signification, leur degré d’exactitude 
+/circle6les processus de récupération/extraction dans les b ases sources 
+/circle6la date du dernier chargement de l’entrepôt 
+/circle6l’historique des données sources et de celles de l’ entrepôt 
+/rhombus6Méthodologie : sera vu plus loin 
+--- Page 21 ---
+212121 
+<#> 2. DW - Stockage 
+/rhombus6Optimisation 
+»besoin de synthèse agrégation des données 
+vs 
+»besoin de détails conservation des données détaillées 
+/rhombus6Notion de granularité
+/rhombus6Structures 
+»directe simple 
+»cumul simple 
+»résumés roulants : structure généralement choisie 
+--- Page 22 ---
+222222 
+<#> 2. DW - Stockage 
+/rhombus6Structure directe simple 
+• pas d’accumulation • rafraîchissement sur   
+une longue période 
+JANVIER 2003 J Adams  123 Main Street P. Anderson 456 High Street K Appleby 10 A Street L Azimoff 64  N Ranch Rd ....................... FEVRIER 2003 J Adams  123 Main Street K Appleby 10 A Street L Azimoff 64  N Ranch Rd W Abraham12 Hwy 9
+J Adams Jan-pres123 Main street W Abraham Feb-pres12 Hwy 9P. Anderson Jan-Jan 456 High Street ............................. 
+--- Page 23 ---
+232323 
+<#> 2. DW - Stockage 
+/rhombus6Structure de cumul simple 
+Jan 1 Jan 2 Jan 3 ... 
+Fev 1 Fev 2 Fev 3 ... 
+Mar 1 Mar 2 Mar 3 ... • Espace de stockage important • Pas de perte de détail 
+--- Page 24 ---
+242424 
+<#> 2. DW - Stockage 
+/rhombus6Structure par résumés roulants 
+jour 1 jour 2 jour 7 
+sem 1 sem 2 sem 4
+mois 1 mois 2 mois 12 
+année 1année 2 année n • très compact • perte d’information • plus l’information vieillit, 
+moins elle est détaillée... ... ... ... 
+--- Page 25 ---
+252525 
+<#> 2. DW - Modélisation 
+/rhombus6Schéma entités-relations (classique) 
+/rhombus6Schéma en étoile (star schema)
+/rhombus6Schéma en flocon (snowflake schema)
+»tables de faits : nombreux champs, tables centrales 
+»dimensions : peu de champs, 
+permettent d’interpréter les faits 
+--- Page 26 ---
+262626 
+<#> 2. DW - Schéma «étoile»
+clé_date 
+jour mois trimestre année 
+id: clé_date 
+acc Dimension Temps 
+description référence 
+catégorie branche 
+id: référence 
+acc Dimension Produit département numero vendeur 
+id: numero vendeur 
+acc Dimension Commercial 
+clé_date référence numero vendeur montant unités 
+ref: numero vendeur 
+acc 
+ref: référence 
+acc 
+ref: clé_date 
+acc VENTES 
+--- Page 27 ---
+272727 
+<#> 2. DW - Schéma «flocon»
+numero dpt 
+id: numero dpt 
+acc Département 
+numero dpt numero vendeur 
+Nom 
+id: numero vendeur 
+acc 
+ref: numero dpt 
+acc Vendeur 
+réf branche 
+id: réf branche 
+acc Branche réf branche réf catégorie 
+id: réf catégorie 
+acc 
+ref: réf branche 
+acc Catégorie réf catégorie description réf produit 
+id: réf produit 
+acc 
+ref: réf catégorie 
+acc Produit clé_date réf produit numero vendeur montant unités 
+ref: numero vendeur 
+acc 
+ref: réf produit 
+acc 
+ref: clé_date 
+acc VENTES 
+clé_date 
+jour mois trimestre année 
+id: clé_date 
+acc Dimension Temps 
+--- Page 28 ---
+282828 
+<#> 2. DW - Rappel sur les Aggrégats 
+/rhombus6Exemple de BD 
+»Produit(GENCOD, Designation, Marque, Nature, 
+PrixAchat, PrixReventeConseille)
+»Vente  (GENCOD, NMAG, Date, Qte, PrixVente)
+»Magasin(NMAG, Enseigne, Adresse, Ville, Dept)
+»Nat2Cat(Nature, Categorie)
+»Cat2Ray(Categorie, Rayonnage) 
+»Dep2Reg(Dept, Region)
+/rhombus6Exercice 
+»Donnez les clés primaires et les clés étrangères 
+--- Page 29 ---
+292929 
+<#> 2. DW - Questions et Requêtes 
+/rhombus6Montant totale des ventes par ville et par produit 
+»select ville, produit, sum(qte*prixvente)from vente, produit, magasin where produit.GENCOD = vente.GENCOD and vente.NMAG = magasin.NMAG group by ville, produit 
+/rhombus6par région et par catégorie 
+»select region, categorie, sum(qte*prixvente)from vente, produit, magasin, dep2reg, nat2cat where produit.GENCOD = vente.GENCOD and 
+vente.NMAG = magasin.NMAG 
+and produit.nature = nat2cat.nature and magasin.dept = dep2reg.dept group by region, categorie 
+--- Page 30 ---
+303030 
+<#> 2. DW - Questions et Requêtes 
+/rhombus6par région et par catégorie et par année
+»select region, categorie, semestre(date), sum(qte*pr ixvente)
+from vente, produit, magasin, dep2reg, nat2cat where produit.GENCOD = vente.GENCOD and 
+vente.NMAG = magasin.NMAG and produit.nature = nat2cat.nature and magasin.dept = dep2reg.dept 
+group by region, categorie, year(date) 
+Remarque : year(date) n’est pas toujours disponible
+/rhombus6par région et par catégorie en 2000 
+»select region, categorie, sum(qte*prixvente)from vente, produit, magasin, dep2reg, nat2cat where produit.GENCOD = vente.GENCOD and 
+vente.NMAG = magasin.NMAG and produit.nature = nat2cat.nature and magasin.dept = dep2reg.dept and year(date) = 2000 
+group by region, categorie 
+--- Page 31 ---
+313131 
+<#> 3. BM - D.W. Base Multidimensionnelle 
+/rhombus6Analyse multidimensionnelle 
+»capacité à manipuler des données qui ont été aggrégées selon différentes dimensions 
+/circle6ex. : analyse des ventes /catégorie de produit 1 dim .
++ /année 2 dim.+ /département commercial 3 dim.+ / zone géographique 4 dim..... agrégations 
+--- Page 32 ---
+323232 
+<#> 3. BM - L'Analyse MultiDimensionnelle 
+/rhombus6Objectif 
+»obtenir des informations déjà aggrégées selon les besoins de l’utilisateur : simplicité et rapidité d’accès
+/rhombus6HyperCube OLAP 
+»représentation de l’information dans un hypercube à N dimensions 
+/rhombus6OLAP (On-Line Analytical Processing)
+»fonctionnalités qui servent à faciliter l’analyse multidimensionnelle : opérations réalisables sur l’hypercube 
+--- Page 33 ---
+333333 
+<#> 3. BM - Glossaire OLAP 
+/rhombus6Dimension 
+»Temps, Produit, Géographie, ... 
+/rhombus6Niveau : hiérarchisation des dimensions 
+»Temps : 
+/circle6Année, Semestre, Trimestre, Mois, Semaine, ... 
+»Produit : 
+/circle6Rayon, Catégorie, Nature, ... 
+»Géographie : 
+/circle6Région, Département, Ville, Magasin 
+/rhombus6Membre d'un Niveau 
+»Produit::Rayon 
+/circle6Frais, Surgelé, ..., Liquide 
+»Produit::Rayon.Catégorie 
+/circle6Frais.Laitage, ..., Liquide.Vin 
+»Produit::Rayon.Catégorie.Nature 
+/circle6Frais.Laitage.Yaourt, ... , Liquide.Vin.Champagne 
+--- Page 34 ---
+343434 
+<#> 3. BM - Glossaire OLAP 
+/rhombus6Cellule 
+»intersection des membres des différentes dim.
+/rhombus6Formule 
+»calcul, expression, règle, croisement des dim.
+/circle6Somme(Qte), Somme(Qte*PrixVente), Moyenne(Qte*(PrixVente-PrixAchat)), ... 
+--- Page 35 ---
+353535 
+<#> 3. BM - Opérations OLAP 
+/rhombus6But 
+»Visualisation/Utilisation 
+d'un fragment de l'Hypercube 
+/rhombus6Opérations OLAP 
+»Drill Up / Drill Down 
+»Rotate 
+»Slicing 
+»Scoping 
+--- Page 36 ---
+363636 
+<#> 3. BM - Opérations OLAP - Drill Up/Down 
+Frais 
+Liquide 221 263 139 
+275 257 116 Frais 
+Liquide 1S95 
+100 121 111 152 139 
+134 141 120 137 116 Frais 
+Liquide 623 
+648 
+Yaourt 
+Salade 95 96 97 
+20 19 22 
+40 43 48 ••• ••• ••• ••• Alim. 95 96 97 
+496 520 255 Drill Up 
+Drill Down Dimension Temps Dimension  
+Produit Drill Up 
+Drill Down 95-97 95 96 97 2S95 1S96 2S96 1S97 vue synthétique / vue détaillée
+--- Page 37 ---
+373737 
+<#> 3. BM - Opérations OLAP - Rotate 
+Frais 
+Liquide 95 96 97 
+221 263 139 
+275 257 116 NordPdC 
+IdF 95 96 97 
+101 120 52 
+395 400 203 
+--- Page 38 ---
+383838 
+<#> 3. BM - Opérations OLAP - Slicing 
+1995 1996 1997 
+Frais IdF 220 265 284 
+Province 225 245 240 
+Liquide IdF 163 152 145 
+Province 187 174 184 1996 
+Frais IdF 265 
+Province 245 
+Liquide IdF 152 
+Province 174 
+--- Page 39 ---
+393939 
+<#> 3. BM - Opérations OLAP - Scoping 
+1995 1996 1997 
+Frais IdF 220 265 284 
+Province 225 245 240 
+Liquide IdF 163 152 145 
+Province 187 174 184 
+1995 1996 
+Frais IdF 220 265 
+Province 225 245 
+--- Page 40 ---
+404040 
+<#> 3. BM - OLAP 
+/rhombus6Constitution de l'Hypercube 
+»Administration 
+»Définition des Dimensions / Niveaux / Membres 
+Automatique, Manuel, Configuration Métier 
+/rhombus6Serveurs OLAP / Clients OLAP 
+»Le client utilise une partie de l'hypercube qu'il cache 
+»Le serveur calcule, stocke l'hypercube et permet son partage. 
+/rhombus6Stockage 
+»M-OLAP : accède à une base multidimensionnelle 
++ rapidité
+»R-OLAP : accède à une base relationnelle 
++ mise à jour 
+»H-OLAP : hybride, multidimensionnel avec accès au niveau le + bas à une base relationnelle 
+--- Page 41 ---
+414141 
+<#> 3. BM - Orientation métier : les Data Marts 
+/rhombus6Data Mart 
+»vue partielle et orientée métier sur les données du D.W. 
+»à chacun son ensemble d’hypercubes OLAP 
+Data Marts du 
+service Marketing 
+Data Mart du 
+service Ressources 
+Humaines 
+--- Page 42 ---
+424242 
+<#> 3. BM - Un D.W., des Data Marts 
+mBD de production nData Marts m x n 
+opérations 
+m + n 
+opérations 
+--- Page 43 ---
+434343 
+<#> 4. Restitution des informations 
+/rhombus6Requêteurs 
+»donne une réponse à une question plus ou moins complexe 
+(type SQL) 
+/rhombus6EIS (Executive Information Systems)
+»outils de visualisation et de navigation dans les données 
+/circle6statistiques + interfaçage graphique 
+/rhombus6Applications spécialisées (ad-hoc) 
+»applications développées spécialement pour les besoins de l’entreprise 
+/rhombus6Data Mining 
+»outils évolués de prédiction, simulation, ... 
+--- Page 44 ---
+444444 
+<#> 4. Restitution des informations 
+/rhombus62 types de variables : quantitatives et qualitative s 
+/rhombus6autres caractéristiques possibles des variables : 
+»temporelle 
+»disjonctive (logique , booléenne) 
+»à réponses multiples 
+»catégorique (par catégorie) non ordonnée  vs. de ra ng (ordre sur les 
+données) 
+»de classes (intervalles de valeurs) XI
+1..i..nX1                   . . . X j . . . X p
+xij individus variables 
+Techniques statistiques : 
+utilisées pour vérifier des hypothèses 
+--- Page 45 ---
+454545 
+<#> 4. Restitution des informations 
+/rhombus6Recodage de données sur 1 variable 
+»pour normaliser, avoir des ordres de grandeur comparables 
+/rhombus6Ex. : 
+»xiutilisée pour avoir (x i- moyenne xi)
+»xi (x i- moyenne xi) / e , avec eécart-type de l’échantillon 
+»xi log (x i) pour limiter l’impact des valeurs exceptionnelles 
+»xi son rang dans l’échantillon 
+»répartition des xien classes d’amplitude ou de fréquence 
+équivalente : xi sa classe Cj 
+»xi 0 ou 1 : création d’un tableau logique 
+»date durée
+»données géographiques coordonnées, distances 
+--- Page 46 ---
+464646 
+<#> 4. Restitution des informations 
+/rhombus6Recodage de données sur plusieurs variables 
+/rhombus6Ex. : 
+»ratios (%) : montant / total 
+»fréquences : fréquence de xij = valeur v par rapport à l’ensemble 
+des valeurs prises par xij 
+»tendance : mesure d’une variation 
+»combinaisons (linéaires ou non) : formules de calculs combinant 
+plusieurs données 
+Ex. : revenu résiduel = revenu - (charges + x*nb d’adultes + y*nb d’enfants) 
+--- Page 47 ---
+474747 
+<#> 4. Restitution des informations 
+Conclusions : 
+• Matière 1 plus «risquée» : différenciation importante dans les notes 
+• Matière 2 : - de risque mais ne permet pas d’obtenir bcp de poi nts supplémentaires 
+• Classification des étudiants + aisée avec les notes 1 (nua ge de points) 
+• Pas de corrélation entre les notes des 2 matières étudiants Note1 Note2 (Note1-moy1)       
+écart note1 / 
+moy (Note2-moy2)       
+écart note2 / 
+moy (ecart 1) 
+puis 2 (ecart 2) 
+puis 2 écart1 * écart2 
+A 16 9 6 0 36 0 0B 8 7 -2 -2 4 4 4C 4 8 -6 -1 36 1 6D 15 9 5 0 25 0 0E 9 8 -1 -1 1 1 1F 19 10 9 1 81 1 9G 2 11 -8 2 64 4 -16 H 15 12 5 3 25 9 15 I 3 8 -7 -1 49 1 7J 9 12 -1 3 1 9 -3 
+10,00 9,40 0 0 322 30 2,3 
+moyenne moyenne somme somme somme somme somme/n = co- variance 
+32,2 3 0,24 
+somme/nb 
+individus = variance variance coef corrélation = covariance/(ecart- type1*ecart-type2) 
+racine(variance) = 
+5,7 1,7 
+écart-type écart-type 
+--- Page 48 ---
+484848 
+<#> 4. Restitution des informations 
+/rhombus6Similarité : coïncidences positives ou négatives 
+»Ex. sur le tableau (from Lefébure et Venturi) :
+barre céréale crème dessert gâteau de riz 
+chocolat OUI NON OUI beurre NON NON OUI liquide NON OUI NON parfum mandarine NON NON OUI emballage métal NON OUI OUI mini-dose OUI OUI NON sucre OUI OUI OUI riz OUI NON OUI édulcorant NON NON OUI colorant NON NON OUI 
+»Indices de similarité (3 formules différentes): 
+/circle6Russel : nb de coïncidences positives / nb de comparaisons 
+/circle6Jaccard : nb de coïncidences positives / (nb de comparaisons - nb de coïncidences négatives) 
+/circle6Sokal : nb de coïncidences positives et négatives / nb de comparaisons • calcul des coïncidences • calcul des indices de similarité entre BC et CD, BC et GR, CD et GR 
+--- Page 49 ---
+494949 
+<#> 4. Data Mining 
+/rhombus6OLAP vs Data Mining 
+»OLAP : l’utilisateur cherche à confirmer des intuitions 
+/circle6ex. : «A-t-on vendu plus de yaourts en Région Paris ienne qu’en 
+Bretagne en 2003 ?»
+»Data Mining : l’utilisateur cherche des corrélations non évidentes 
+/circle6ex. : «Quelles sont les caractéristiques de l’achat  de yaourts ?»
+--- Page 50 ---
+505050 
+<#> 4. Data Mining 
+/rhombus6Principe 
+»Creuser une mine (le DW) pour rechercher un filon (l’information) 
+»Evolution par rapport aux statistiques «classiques»
+/rhombus6Objectifs 
+»Prédiction (What-if)
+ex. demande de prêt 
+»Découverte de Règles Cachées (corrélations) 
+ex. bière + couches 
+»Confirmation d’hypothèses 
+/rhombus6Entrées 
+»Fichiers Texte, Feuille de Calcul (SYLK, XLS) 
+»Slice/Scope d'un HyperCube OLAP 
+--- Page 51 ---
+515151 
+<#> 4. Restitution des informations 
+/rhombus6Recherche des exemples les plus proches 
+»Raisonnement à base de cas 
+»Agents intelligents 
+/rhombus6Analyse de données : construction d’un modèle 
+»réseaux de neurones 
+»arbres de décisions 
+»... 
+--- Page 52 ---
+525252 
+<#> 4. Restitution des informations - RBC 
+/rhombus6Raisonnement à base de cas (RBC ou CBR) 
+»résolution de problèmes par comparaison avec problèmes similaires déjà rencontrés
+problème 
+cas 
+cas remémoré
+solution proposéeEvaluation de 
+la situation 
+Recherche de cas similaires 
+Adaptation Test/ 
+Amélioration base de cas /circle6la base de cas est structurée hiérarchiquement 
+/circle6indexation des données : pondération des critères de similarité
+--- Page 53 ---
+535353 
+<#> 4. Restitution des informations - Agents 
+/rhombus6Agents intelligents ou Knowbots 
+»entités logicielles capables d’agir de manière autonome dans un environnement informatique hétérogène 
+»personnalisation de l’information par apprentissage d’un «profil» utilisateur 
+»utilisation sur internet, agents commerciaux électroniques 
+--- Page 54 ---
+545454 
+<#> 4. Restitution des informations 
+/rhombus6Analyse de données 
+Equations 
+Logique 
+Projections Réseau de 
+neurones 
+Techniques 
+de régression 
+Règles 
+Arbres de 
+décision 
+Analyses factorielles 
+Analyses de typologie 
+--- Page 55 ---
+555555 
+<#> 4. Techniques de Data Mining 
+Arbres de Décision 
+/rhombus6Principe : 
+»division de la population par groupes dont les individus partagent une caractéristique commune 
+»construction à partir d’une base d’exemples 
+»recherche de la caractéristique la plus discriminante àchaque étape (classification automatique) 
+»variables discrètes 
+/rhombus6Résultat : mise en évidence de corrélations 
+»enchaînement hiérarchique de règles logiques sous forme d’un «arbre»
+--- Page 56 ---
+565656 
+<#> 4. Techniques de Data Mining 
+»exemple : le mailing, le contact téléphonique 
+Question E1 E2 E3 E4 E5 E6 
+Q1 Connaît l’école oui oui non oui non non 
+Q2 A eu un stagiaire oui non non non non non 
+Q3 A embauché un 
+ancien étudiant oui non oui non oui oui 
+Q4 Verse la taxe non oui oui non non non 
+Q5 A participé à un 
+événement oui oui oui oui oui oui 
+R Rendez-vous oui oui oui non non non base d’exemples 
+--- Page 57 ---
+575757 
+<#> 4. Techniques de Data Mining 
+»exemple : le mailing, le contact téléphonique 
+Q4 Q4=oui 
+Q4=non Q2=oui 
+Q2=non R=oui 
+R=non R=oui Question E1 E2 E3 E4 E5 E6 
+Q1 Connaît l’école oui oui non oui non non 
+Q2 A eu un stagiaire oui non non non non non 
+Q3 A embauché un 
+ancien étudiant oui non oui non oui oui 
+Q4 Verse la taxe non oui oui non non non 
+Q5 A participé à un 
+événement oui oui oui oui oui oui 
+R Rendez-vous oui oui oui non non non base d’exemples 
+--- Page 58 ---
+585858 
+<#> 4. Techniques de Data Mining 
+Réseaux de Neurones 
+/rhombus6Principe : 
+»neurones = petits modules de calcul organisés en 
+«couches» constituant un réseau 
+»activation et apprentissage 
+/circle6activation d’un neurone par ceux de la couche amont
+/circle6sortie fonction plus ou moins complexe des entrées 
+/circle6apprentissage à partir d’une base d’exemples : si telles entrées alors telles sorties attendues 
+/circle6renforcement des chemins les plus parcourus 
+/rhombus6Résultat 
+»Création d’un modèle reposant sur les données existantes par un réseau apprenant 
+--- Page 59 ---
+595959 
+<#> 4. Techniques de Data Mining 
+/rhombus6Techniques les plus utilisées 
+»MultiLayer Perceptron, RadialBasis Function, Kohonen Network 
+/rhombus6Données numériques 
+/rhombus6Prédiction / Simulation 
+»ex. : le prêt bancaire 
+entrées sortie(s) 
+--- Page 60 ---
+606060 
+<#> 4. Techniques de Data Mining 
+/rhombus6Les algorithmes génétiques 
+»principes de sélection, reproduction et mutation génétiques 
+»convergence vers les solutions les meilleures (les plus adaptées) par conservation des bons individus / chromosomes aux générations suivantes tout en gardant une population identique en volume 
+»utilisation : 
+/circle6optimisation de grilles de score : modification des  paramètres d’une 
+régression logique, 
+/circle6optimisation d’arbres de décision : isoler les vari ables les plus 
+pertinentes pour expliquer un comportement, 
+/circle6optimisation de réseaux de neurones : modification des poids des 
+liaisons 
+--- Page 61 ---
+616161 
+<#> 4. Techniques de Data Mining 
+/rhombus6Les réseaux bayésiens 
+»but : associer une probabilité d’apparition d’un événement étant donnée la connaissance de certains autres événements 
+»graphe orienté dans lequel les noeuds représentent des variables et les arcs, les dépendances entre ces variables 
+»probabilités associées aux variables et aux liens de dépendance 
+objet 
+du prêt 
+montant durée
+dossier en 
+contentieux dossier 
+sain 
+--- Page 62 ---
+626262 
+<#> 4. Synthèse 
+Bases de 
+Production Entrepôt 
+de Données Base 
+MultiDimensionnelle Prédiction 
+/ Simulation Prise de 
+Décision 
+Fusion des Schémas 
+(BD Hétérogènes) 
+Stockage et Accès 
+(BD Parallèles) Requêtes d'Aggrégats 
+(BD Parallèles) 
+Mises à Jour 
+Stockage 
+et Accès Répartition 
+Serveur/Client 
+(Statistiques,IA) 
+--- Page 63 ---
+636363 
+<#> 5. Gestion de projet Data Warehouse 
+/rhombus6Chaque Data Warehouse est unique 
+/rhombus6Tâche complexe et ardue 
+/rhombus6Construction itérative 
+/circle6Focalisations successives sur un ensemble de besoin s 
+évaluation conception développement ajout de nouveaux 
+Data Marts et/ou 
+fonctionnalités à
+l’existant 
+Construction du 
+«noyau» du système t
+--- Page 64 ---
+646464 
+<#> 5. Les acteurs 
+/rhombus6Le «sponsor»
+»membre de la direction, soutient le projet 
+/rhombus6Le comité utilisateur 
+»différentes catégories (regroupement par besoins) 
+»des représentants 
+/rhombus6Les administrateurs du système d’information 
+»très importants (connaissance des données) 
+»maintenance future du Data Warehouse 
+/rhombus6L’équipe de conception 
+»souvent : consultants externes 
+--- Page 65 ---
+656565 
+<#> 5. Cycle de vie 
+/rhombus6Justification du projet 
+/rhombus6Itérations : 
+»Conception 
+»Développement (prototypage) 
+»Evaluation 
+/rhombus6Tests et Mise en exploitation 
+/rhombus6Evaluation et évolution 
+--- Page 66 ---
+666666 
+<#> 5. Justification du projet 
+/rhombus6objectif, retours attendus 
+/rhombus6choix de l’équipe de conception 
+»appel éventuel à un intervenant extérieur 
+/rhombus6choix du ou des domaine(s) cibles 
+»correspondant au(x) premier(s) Data Mart(s) 
+/rhombus6constitution du comité utilisateurs et de l’équipe de DBAs 
+/rhombus6planification 
+Sponsor 
+Concepteurs Utilisateurs 
+DBAs 
+--- Page 67 ---
+676767 
+<#> 5. Cycle de prototypage 
+/rhombus6Analyse 
+»besoins des utilisateurs, difficultés actuelles 
+/circle6interviews 
+»données de production 
+/circle6Rétro-Ingénierie, documentation, évaluation qualité... 
+»existant éventuel en applications décisionnelles 
+/rhombus6Modélisation 
+»données 
+»traitements 
+/rhombus6Choix techniques 
+/rhombus6Développement de prototype 
+/rhombus6Evaluation 
+Concepteurs Utilisateurs 
+DBAs Utilisateurs Sponsor 
+(ou direction) 
+--- Page 68 ---
+686868 
+<#> 5. Recueil des besoins 
+/rhombus6OBJECTIF PRINCIPAL 
+»Qu’attendez-vous principalement du Data Warehouse ?
+/rhombus6DECISIONS 
+»Quelles décisions avez-vous à prendre ?  (Quoi ?) 
+»Quels sont les critères qui influencent la prise de  décision ?  (Comment ?) 
+»Dans quel(s) but(s) les décisions sont-elles prises  ?  (Pourquoi ?) 
+/rhombus6DIFFICULTES ACTUELLES 
+»Quelles sont les difficultés actuellement rencontré es dans la prise de décision, difficultés 
+en rapport avec les données ? 
+/circle6précision des données (détails, actualisation, véri fication) 
+/circle6synthèse des données (regroupements) 
+/circle6évolution (temps) 
+/circle6autres... 
+/rhombus6ACTUALISATION DES INFORMATIONS 
+»Quels sont les besoins concernant la fréquence de m ise à jour des informations proposées 
+par le Data Warehouse ?
+/rhombus6PRESENTATION DES INFORMATIONS 
+»Quelles sont vos préférences dans la présentation d es informations 
+/circle6tableaux, graphiques, ? 
+»Type de graphiques : barres-graphes, “camemberts”, nuages de points ...  ? 
+»Existe-t-il une présentation actuelle ou habituelle  à conserver ? date de réalisation : auteur : utilisateur : 
+--- Page 69 ---
+696969 
+<#> 5. Analyse des données de production 
+/rhombus6Identifier les sources de données qui alimenteront le Data Warehouse :
+»quelles sont les données disponibles 
+»comment accéder à ces données (lieu, système et architecture) 
+»qui les gèrent 
+»leur format 
+»leur signification 
+»leur qualité
+/barb4rightméta-données stockées dans la métabase 
+--- Page 70 ---
+707070 
+<#> 5. La métabase 
+Tout Data Warehouse comporte une métabase qui 
+regroupe des méta-données. Les méta-données sont 
+utilisées pour stocker des informations à propos des  
+données utilisées par le Data Warehouse.
+/rhombus6la métabase comprend : 
+»un dictionnaire des données : contient les définiti ons des éléments 
+contenus dans les bases de données et les liens ent re eux. 
+»l'origine des données : quelle est la base opératio nnelle d'origine d'une 
+donnée 
+»le flux de données (direction, fréquence) 
+»la transformation des données 
+»l'historique des données 
+»... 
+--- Page 71 ---
+717171 
+<#> 1-1 0-1 
+provient_integration 1-1 0-N 
+possede 
+0-N 0-N DerniereMaJ nourrit 
+origine_DW_1 0-N 1-N 
+DerniereMaJ nourrit 0-N 
+1-N DerniereMaJ nourrit 1-1 
+0-N explique_par 0-N 0-1 
+est_synonyme_de 1-1 0-N a_subi 
+0-N 1-1 
+appartient_a 
+1-N 1-1 
+appartient_a 0-N 
+0-N appartient_a P
+Pentité_origine 
+entité_destinataire 
+description 
+id:entité_origine 
+entité_destinataire Transformation 
+code 
+définition 
+id: code Table_code 
+entite_maitre 
+entite_esclave 
+explication 
+id: entite_maitre 
+entite_esclave sources origine_op origine_DW 
+nom_table_physique 
+id: nom_table_physique OpDB_Table OpDB_Colonne 
+nom_DB_physique 
+Rôle[1-N] Utilisateurs[0-N] Sup_Logiciel Sup_Materiel 
+id: nom_DB_physique OpDataBase Nom 
+Signification[0-1] 
+id: Nom MetaBase_Element 
+mod_code 
+mod_date 
+explication 
+id: mod_code 
+mod_date historique 
+nom_DW_entite 
+id: nom_DW_entite DW_Entity DW_Attribut MetaBase 5/5 
+--- Page 72 ---
+727272 
+<#> 5. Communiquer avec les utilisateurs 
+/rhombus6Proposer une maquette de l’interface homme-machine : 
+»contenu des écrans 
+»enchaînement des écrans 
+/rhombus6Support : informatique ou papier 
+/rhombus6Privilégier un moyen de communication non technique /barb4rightcritique par les utilisateurs et 
+recueil des besoins 
+--- Page 73 ---
+737373 
+<#> 5. Exemple d’enchaînement des écrans 
+menu principal 
+résultats par 
+zone : niveau 
+région statistiques sur le 
+CA par produit et 
+par zone résultats par 
+zone 
+géographique : 
+niveau pays résultats 
+par produit menu CA menu clientèle clic sur “CA” clic sur “Clients” 
+bouton “Main” 
+clic sur 
+“produit” 
+clic sur 
+“statistiques par 
+zone” clic sur “zone 
+géographique” 
+clic sur 
+“statistiques par 
+produit” 
+flèche flèche ... menu menu 
+--- Page 74 ---
+747474 
+<#> 5. Rétro-Ingénierie 
+/rhombus6Principe 
+»reconstruire les modèles de conception d’une B.D. 
+/rhombus6Usage 
+/circle6documentation inexistante ou non réactualisée
+/circle6compréhension des données de production en vue de leur intégration 
+/rhombus6Outils spécifiques 
+»AGL (Atelier de Génie Logiciel ou CASE) 
+INGENIERIE génération Modèle 
+Conceptuel de 
+Données 
+modèle 
+logique de 
+données transformation 
+script de 
+création des 
+SD modèle 
+physique de 
+données transformation 
+Base de 
+Données RETRO-INGENIERIE Modèle (Semi-) 
+Conceptuel de 
+Données 
+script DDL extraction 
+--- Page 75 ---
+757575 
+<#> 5. Intégration 
+/rhombus6intégrer les MCD obtenus par rétro-ingénierie en un modèle global et homogène 
+/rhombus6difficultés :
+»conflit de classification 
+»conflit de description 
+»conflit de structure 
+/rhombus6mémoriser les transformations pour retrouver le lien données opérationnelles / données DW 
+--- Page 76 ---
+767676 
+<#> 5. Intégration 
+/rhombus6conflit de classification 
+»objets de sémantiques voisines mais comportant cert aines propriétés différentes 
+»Solution : soit établir une relation IS-A, soit opérer une f usion entre les deux objets. 
+/rhombus6conflit de description 
+»représentation différente des propriétés, à savoir d es identifiants différents, des formats 
+différents d’attributs identiques,... : 
+»Solution : choisir une des deux représentations, la plus log ique, la plus cohérente avec le 
+reste du modèle, pour exprimer le résultat de l’int égration. 
+/rhombus6conflit de structure 
+»l’attribut d’un modèle correspond à l’entité d’une au tre ou un attribut à une association, 
+ou une entité à une association 
+»Solution : passer par une étape de transformation entité/att ribut ou entité/association 
+/rhombus6Il est très important de mémoriser les transformations opérée s afin de garder une 
+trace permettant de retrouver le lien entre un élément du Dat a Warehouse et les 
+données correspondantes des bases opérationnelles. 
+--- Page 77 ---
+777777 
+<#> 5. Modélisation : les dimensions 
+An Mois Trimestre Jour Semaine dimension Temps 
+Catégorie Branche Produit Sous-
+catégorie 
+Direction Agent Division dimension Produit dimension Commerciale 
+Type de 
+promotion 
+Promotion Type de 
+media 
+Type 
+d’affichage Type 
+d’afficheur dimension Promotion 
+--- Page 78 ---
+787878 
+<#> 5. Modélisation : les dimensions 
+
+--- Page 79 ---
+797979 
+<#> 5. Finalisation 
+/rhombus6Derniers développements 
+/rhombus6Tests 
+»premier chargement du DW sur site 
+»tests 
+/rhombus6Mise en exploitation 
+»chargements réguliers 
+»utilisation «au quotidien»
+Concepteurs DBAs Utilisateurs 
+--- Page 80 ---
+808080 
+<#> 5. Evolution 
+/rhombus6Evaluation 
+»mise en œuvre régulière 
+»utilisation 
+»confrontation aux retours attendus 
+»évaluations à différentes échéances 
+/rhombus6Evolution 
+»suite du projet : 
+/circle6ajout de fonctionnalités ? 
+/circle6ajout de Data Marts ?
+Sponsor 
+Concepteurs Utilisateurs 
+DBAs 
+--- Page 81 ---
+818181 
+<#> 6. Les outils 
+/rhombus6Un marché fragmenté : 
+»Constitution du DataWarehouse 
+»Stockage 
+»Extraction d’Information 
+--- Page 82 ---
+828282 
+<#> 6. Constitution du DataWarehouse 
+/rhombus6Administration 
+»SourcePoint (Software AG), ISM/OpenMaster (Bull), CA-UniCenter, DataHub (IBM), CPE (SAS), Warehouse Administrator (SAS) 
+/rhombus6Extraction et Purification 
+»Warehouse Manager (Prism), Integrity Data Reengineering (Vality),  Access (SAS), DataStage (VMark), Génio (Léonard’s Logic),  InfoRefiner (Platinum), PASSPORT et NATURAL  (Software AG), Gentia ( Planning Sciences) 
+--- Page 83 ---
+838383 
+<#> 6. Stockage 
+/rhombus6DataWarehouse 
+»Oracle, Sybase, Informix, Ingres (CA), DB2 (IBM), Tandem, Teradata, ... 
+/rhombus6Serveur OLAP 
+»Express (Oracle), Business Objects, Powerplay / Impromptu (Cognos), Adabas (Software AG), Opera (CFI), ALEA (MIS AG),  Harry Cube (Adviseurs), Gentia (Planning Sciences), Essbase (Arbor Software), Informix, Pilot, ... 
+--- Page 84 ---
+848484 
+<#> 6. Extraction d'Information 
+/rhombus6Rétro-ingénierie (Reverse-Engineering) 
+»Business Object, DB-Main 
+/rhombus6Browser OLAP 
+»Discoverer (Oracle), ESPERANT (Software AG), InfoBea con 
+(Platinum), Explorer (Business Objects), le VCL DecisionCube de 
+Delphi Cl/Sv 
+/rhombus6Arbres de Décision 
+»Alice (ISoft), Knowledge Seeker (Angoss), Chaid (SPSS)
+/rhombus6Réseaux de Neurones 
+»Predict (Neuralware), Neural Connection (SPSS), Previ a (Elseware)
+/rhombus6Autres 
+»Mineset (SGI), Darwin (Thinking Machines), Gupta Data Mind (basé
+sur les réseaux d’agents), Discovery Server (Pilot),  DSS Agent (Micro 
+Strategy), BusinessMiner (Business Objects), Intelli gent Miner (IBM), 
+... 
+--- Page 85 ---
+858585 
+<#> 7. Perspectives du Data Warehouse 
+/rhombus6homogénéisation 
+»des outils intégrant les différentes étapes de la suite décisionnelle 
+/rhombus6données externes 
+»ouverture à l’internet 
+/rhombus6augmentation des volumes de données 
+/rhombus6restitution des informations : 
+»nouvelles techniques de data mining 
+»multimédia 
+/rhombus6outils de constitution du référentiel 
+»la métabase 
+--- Page 86 ---
+868686 
+<#> 8. Bibliographie - Livres 
+/rhombus6J.-M. Franco, «Le Data Warehouse / Le Data Mining», Eyrolles, 1997 
+/rhombus6J.-M. Franco, S. De Lignerolles, «Piloter l'entrepr ise grâce au data 
+warehouse», Eyrolles, 2000. 
+/rhombus6R. Mattison, «Data Warehousing - Strategies, Technolo gies and Technics», 
+IEEE Computer Society, 1996. 
+/rhombus6W. H. Inmon, «Building the Data Warehouse», ed. Wile y 
+»1ère édition : 1996, 3ème édition: 2002, voir http: //www.billinmon.com/
+/rhombus6W. H. Inmon, «Managing the Data Warehouse», ed. Wiley , 1997 
+/rhombus6R. Kimball, «Entrepôts de Données», Intl Thomson Pub ., 1997. 
+/rhombus6Ralph Kimball, Laura Reeves, Warren Thornwaite, « Th e Data Warehouse 
+Lifecycle Toolkit: Expert Methods for Designing, Deve loping, and 
+Deploying Data Warehouses », 800 pages (août 1998), E d Wiley, ISBN: 
+0471255475 
+/rhombus6Ralph Kimball, Margy Ross, « Entrepôts de données. Gu ide pratique de 
+modélisation dimensionnelle », 2ème édition (1 janvi er 2003), Ed Vuibert, 
+2-7117-4811-1
+--- Page 87 ---
+878787 
+<#> 8. Bibliographie - Livres 
+/rhombus6R. Michalski et al., "Apprentissage symbolique.", Cépaduès, 1993. 
+/rhombus6Patrick Becker, Ann Becker, Patrick Naïm, Les Réseaux bayésiens : Modèles graphiques de connaissance, Ed Eyrolles, 1999 
+--- Page 88 ---
+888888 
+<#> Bibliographie 
+/rhombus6Surajit Chaudhuri, Umeshwar Dayal:   An Overview of Data Warehousing and OLAP Technology. SIGMOD Record 26 (1): 65-74 (1997) 
+--- Page 89 ---
+898989 
+<#> 8. Bibliographie - WWW 
+/rhombus6http://www.dw-institute.com/
+/circle6The Data Warehouse Institute 
+/rhombus6http://pwp.starnetic.com/larryg/
+/circle6Infos dont accès à des livres blancs sur le DW 
+/rhombus6http://www.promotheus.eds-fr/themes/dw/
+/circle6Institut Promotheus, thème DW 
+/rhombus6http://www.cait.wustl.edu/cait/papers/prism/
+/circle6Société Prisme fondée par W.H. Inmon 
+/rhombus6http://www.olapcouncil.org/
+/circle6Outils OLAP 
+/rhombus6http://www.valoris.fr/amplitude/j101.htm 
+/rhombus6http://www.mediatid.fr/datawarehouse 
+/circle6forum sur le Data Warehouse 
+--- Page 90 ---
+909090 
+<#> 8. Bibliographie - Recherche 
+/rhombus6ACM SIGMOD 
+/rhombus6VLDB 
+/rhombus6Data Warehousing and Knowledge Discovery (DaWaK)
+»Conférence scientifique spécialisée
+/rhombus6ACM SIG KDD (Knowledge Discovery and Data Mining)
+»Conférence scientifique spécialisée
+/rhombus6DOLAP 
